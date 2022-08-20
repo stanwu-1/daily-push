@@ -17,7 +17,7 @@ app_secret = os.environ["APP_SECRET"]
 user_id = os.environ["USER_ID"]
 template_id = os.environ["TEMPLATE_ID"]
 
-lucky_color = ['绿色','橙色','黄色','白色','蓝色','红色','紫色']
+lucky_color = ['克莱茵蓝','爱马仕橙','茶绿','蒂芙尼蓝','莫兰迪绿','葵黄','珍珠灰','桃粉','咖色']
 def get_weather():
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
   res = requests.get(url).json()
