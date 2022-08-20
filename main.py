@@ -17,7 +17,7 @@ app_secret = os.environ["APP_SECRET"]
 user_id = os.environ["USER_ID"]
 template_id = os.environ["TEMPLATE_ID"]
 
-
+lucky_color = ['绿色','橙色','黄色','白色','蓝色','红色','紫色']
 def get_weather():
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
   res = requests.get(url).json()
@@ -43,11 +43,13 @@ def get_words():
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
 
+def get_random_lucky():
+  return random.choice(lucky_color)
 
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
-data = {"weather":{"value":wea},"temperature":{"value":temperature},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"weather":{"value":wea,"color":get_random_color()},"temperature":{"value":temperature},"words":{"value":get_words(), "color":get_random_color()},"lucky":{"value":get_random_lucky()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
